@@ -9,7 +9,14 @@ func ReverseStringSlice(oldString []string) []string {
 	return newString
 }
 
-
+func StringInSlice(checkString string, checkSlice []string) bool {
+	for _, x := range checkSlice {
+		if x == checkString {
+			return true
+		}
+	}
+	return false
+}
 
 
 
