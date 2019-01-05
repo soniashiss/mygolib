@@ -2,11 +2,11 @@ package configmap
 
 import "github.com/Unknwon/goconfig"
 
-//parse configmap to a map[string]map[string]string struct
+//ParseConfig parse configmap to a map[string]map[string]string struct
 //necessary: the necessary section names
 //optional: the optional section names
 //example: see config.ini and test
-func ParseConfig(filename string, necessary []string, optional []string)  (map[string]map[string]string, error){
+func ParseConfig(filename string, necessary []string, optional []string) (map[string]map[string]string, error) {
 	c, err := goconfig.LoadConfigFile(filename)
 	if err != nil {
 		return map[string]map[string]string{}, err
@@ -19,9 +19,9 @@ func ParseConfig(filename string, necessary []string, optional []string)  (map[s
 		tempMap, err := c.GetSection(sectionName)
 		if err != nil {
 			return map[string]map[string]string{}, err
-		} else {
-			configMap[sectionName] = tempMap
 		}
+		configMap[sectionName] = tempMap
+		
 	}
 
 	//optional := []string{"sectionB"}
