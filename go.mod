@@ -1,4 +1,4 @@
-module github.com/soniashiss/mygolib
+module github.com/soniashiss/tinylib
 
 go 1.12
 
