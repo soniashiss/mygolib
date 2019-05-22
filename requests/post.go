@@ -18,7 +18,9 @@ func SendPOST(url string, header map[string]string, param []byte) (int, string, 
 		req.Header.Set(k, v)
 	}
 
-	client := &http.Client{}
+	client := &http.Client{
+		Timeout: requestTimeout,
+	}
 	resp, err := client.Do(req)
 	if resp != nil {
 		defer resp.Body.Close()

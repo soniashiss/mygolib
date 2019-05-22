@@ -8,7 +8,10 @@ import (
 func SendGET(uri string, param string) ([]byte, error) {
 	newurl := uri + param
 
-	resp, err := http.Get(newurl)
+	client := &http.Client{
+		Timeout: requestTimeout,
+	}
+	resp, err := client.Get(newurl)
 	if resp != nil {
 		defer resp.Body.Close()
 	}
