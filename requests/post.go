@@ -36,3 +36,35 @@ func SendPOST(url string, header map[string]string, param []byte) (int, string, 
 		}
 	}
 }
+
+func SendPOSTByteReturn(url string, header map[string]string, param []byte) (int, []byte, error) {
+	body := bytes.NewBuffer(param)
+
+	req, err := http.NewRequest("POST", url, body)
+	if err != nil {
+		return 500, []byte{}, err
+	}
+
+	for k, v := range header {
+		req.Header.Set(k, v)
+	}
+
+	client := &http.Client{
+		Timeout: requestTimeout,
+	}
+	resp, err := client.Do(req)
+	if resp != nil {
+		defer resp.Body.Close()
+	}
+	if err != nil {
+		return 500, []byte{}, err
+	} else {
+		result, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			return 500, []byte{}, err
+		} else {
+			return resp.StatusCode, result, nil
+		}
+	}
+}
+
