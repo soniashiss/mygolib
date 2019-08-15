@@ -80,6 +80,9 @@ func SendGETWithHeaderCodeReturn(uri string, param string, header map[string]str
 	if err != nil {
 		return code, []byte{}, err
 	} else {
+		if resp == nil {
+			return http.StatusNoContent, []byte{}, nil
+		}
 		result, err := ioutil.ReadAll(resp.Body)
 		//fmt.Println(string(result))
 		if err != nil {
