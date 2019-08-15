@@ -72,7 +72,7 @@ func SendGETWithHeaderCodeReturn(uri string, param string, header map[string]str
 	}
 
 	resp, err := client.Do(req)
-	code := int(404)
+	code := http.StatusInternalServerError
 	if resp != nil {
 		code = resp.StatusCode
 		defer resp.Body.Close()
