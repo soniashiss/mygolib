@@ -14,5 +14,5 @@ func (wrapper SliceMapStringWrapper) Swap(i, j int) {
 }
 
 func (wrapper SliceMapStringWrapper) Less(i, j int) bool {
-	return wrapper.by(wrapper.Data[i], wrapper.Data[j])
+	return wrapper.By(wrapper.Data[i], wrapper.Data[j])
 }
