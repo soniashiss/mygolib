@@ -2,7 +2,7 @@ package slicedata
 
 type SliceMapStringWrapper struct {
 	Data []map[string]interface{}
-	by func(p, q map[string]interface{}) bool
+	By func(p, q map[string]interface{}) bool
 }
 
 func (wrapper SliceMapStringWrapper) Len() int {
