@@ -17,7 +17,7 @@ var (
 
 func InitiateOrm(username, password, tcpAddr, databaseName string) {
 
-	url := username + ":" + password + "@tcp(" + tcpAddr + ")/" + databaseName + "?charset=utf8"
+	url := username + ":" + password + "@tcp(" + tcpAddr + ")/" + databaseName + "?charset=utf8&parseTime=true&loc=Asia%2FShanghai"
 	_xorm, _ := xorm.NewEngine("mysql", url)
 	Orm = &localOrm{_xorm, 4}
 
