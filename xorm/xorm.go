@@ -29,9 +29,10 @@ func InitiateOrm(username, password, tcpAddr, databaseName string) {
 	//default logger is directed to os.stdOut
 	go keepAlive(&Stop)
 }
-func SetLogger(out io.Writer, level core.LogLevel) {
+func SetLogger(out io.Writer, level core.LogLevel, isShowSQL bool) {
 	logger := xorm.NewSimpleLogger(out)
 	logger.SetLevel(level)
+	logger.ShowSQL(isShowSQL)
 	Orm.SetLogger(logger)
 	Orm.Logger().Infof("set logger successfully\n")
 }
