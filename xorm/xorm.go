@@ -15,7 +15,7 @@ var (
 	Stop int
 )
 
-func InitiateOrm(username, password, tcpAddr, databaseName string) {
+func InitiateOrm(username, password, tcpAddr, databaseName string, location *time.Location) {
 	url := username + ":" + password + "@tcp(" + tcpAddr + ")/" + databaseName + "?charset=utf8"
 	_xorm, _ := xorm.NewEngine("mysql", url)
 	Orm = &localOrm{_xorm, 4}
@@ -24,7 +24,7 @@ func InitiateOrm(username, password, tcpAddr, databaseName string) {
 	Orm.SetLogLevel(core.LOG_ERR)
 	Orm.SetMaxIdleConns(10)
 	Orm.SetMaxOpenConns(20)
-	location, _ := time.LoadLocation("Asia/Shanghai")
+	//location, _ := time.LoadLocation("Asia/Shanghai"))))
 	Orm.SetTZLocation(location)
 	Orm.SetTZDatabase(location)
 	Orm.SetConnMaxLifetime(4 * time.Hour)
