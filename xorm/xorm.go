@@ -25,8 +25,9 @@ func InitiateOrm(username, password, tcpAddr, databaseName string) {
 	Orm.SetLogLevel(core.LOG_ERR)
 	Orm.SetMaxIdleConns(10)
 	Orm.SetMaxOpenConns(20)
-	Orm.SetTZLocation(time.Local)
-	Orm.SetTZDatabase(time.Local)
+	location, _ := time.LoadLocation("Asia/Shanghai")
+	Orm.SetTZLocation(location)
+	Orm.SetTZDatabase(location)
 	Orm.SetConnMaxLifetime(4 * time.Hour)
 	//default logger is directed to os.stdOut
 	go keepAlive(&Stop)
